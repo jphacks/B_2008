@@ -67,7 +67,7 @@ Amazon Rekognitionを利用することで機械学習による高精度な画�
 ### 活用した技術
 #### API・データ
 * LINE MessagingAPI
-* Amazon Rekognition
+* ~~Amazon Rekognition~~
 
 #### フレームワーク・ライブラリ・モジュール
 * Node.js (express)
