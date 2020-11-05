@@ -1,7 +1,8 @@
 @charset "UTF-8";
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 body {
   background: #f9f9f9;
-  font-family: "MS Pゴシック";
+  font-family: 'Montserrat';
   margin: 0; }
 
 header {
