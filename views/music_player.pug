@@ -1,0 +1,49 @@
+doctype html
+
+
+//  メモ npm run compile:sass
+html(lang="ja")
+    include _include/head.pug
+    body(ontouchstart="")
+        // include _include/header.pug
+        
+        section.key_visual
+            .key_flex_box
+                .key_flex.key_30
+                    img.topVisual(src="image/key_visual/kentrance.png")
+                .key_flex.key_70.pc_key_70
+                    img.topTitle(src="image/key_visual/pc_title.png")
+                // スマホver pc画面では非表示
+                .key_flex.key_70.s_key_70
+                    img.topTitle(src="image/key_visual/s_title.png")
+            .key_mask 
+            // 背景画像の移り変わり
+            div
+                ul.transition_bg
+                    li
+                    li
+                    li
+                    li
+                    li
+                    li
+                    li
+        
+        #data_responce
+            h1#result_response BGMM!: #{audio_title}
+            // p#audio_list #{audio_list}
+            #music_player
+                - const src = 'music/' + audio_list[0]
+                audio#audio(src=src preload="auto" controls)
+                #music_btns
+                    #play PLAY!
+                    #stop STOP
+                
+        footer もっくもくver.3
+        
+        script(type="text/javascript")
+            | let audio_title = '#{audio_title}'.split(',');
+            | console.log(audio_title);
+            | let audio_list = '#{audio_list}'.split(',');
+            | console.log(audio_list);
+            
+        script(type="text/babel" src="./js/music_player.js")

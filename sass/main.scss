@@ -1,0 +1,574 @@
+body{
+    background: #f9f9f9;
+    font-family: "MS Pゴシック" ;
+    // background: #000;
+    // background: #fffff9;
+    margin:0;
+}
+
+header{
+    background:#eee;
+    // background:#6d819c;
+    text-align: center;
+    padding-top:64px;
+    padding-bottom:20px;
+    margin:0;
+    font-size:2em;
+    animation-name:fade-in;
+    animation-duration:1s;
+    animation-timing-function:ease-in;
+    animation-delay:0ms;
+    h1{
+        margin:0;padding:0;
+        color:#3e4149;
+    }
+    p{
+        margin:0;padding:0;
+        color:#666;
+    }
+}
+
+#img_post_btn, #play, #stop, #to_top{
+    cursor: pointer;
+    width:200px;
+    border: 1px solid #ccc;
+    border-radius:4px;
+    text-align: center;
+    padding:12px 0;
+    margin: 16px auto;
+    font-weight: bold;
+    background:#f9f9f9;
+}
+
+#img_form_container{
+    background:#eee;
+    // background:#e4e7ec;
+    margin:10px;
+    padding:10px;
+    border-radius:7px;
+    animation-name:fade-in;
+    animation-duration:2s;
+    animation-timing-function:ease-in;
+    animation-delay:0ms;
+    font-weight:none;
+    text-align: center;
+    color:#666;
+    p{
+        color: #333;
+    }
+    form{
+        font-weight:bold;
+    }
+    
+    #preview {
+        img{
+            height:200px;
+        }
+    }
+}
+
+
+#app_description {
+    background:#eee;
+    // background:#55967e;
+    margin:10px;
+    padding:10px;
+    border-radius:7px;
+    animation-name:fade-in;
+    animation-duration:3s;
+    animation-timing-function:ease-in;
+    animation-delay:0ms;
+    text-align:center;
+    h1{
+        text-align: center;
+        margin:0;padding:0;
+        color:#3e4149;
+    }
+    p {
+        margin:0;padding:0;
+        color:#666;
+    }
+    ul {
+        padding:0 5px;
+        list-style:none;
+        margin-bottom:0;
+        li {
+            margin-bottom:20px;
+        }
+    }
+}
+#data_responce{
+    background:#eee;
+    // background:#e4e7ec;
+    border-radius:7px;
+    margin:10px;
+    padding:10px;
+    text-align:center;
+    h1{
+        margin:0;padding:0;
+        color:#333;
+    }
+    p {
+        margin:0;padding:0;
+        color:#666;
+    }
+    #music_player{
+        margin:5px;
+        .hidden{
+            display:none;
+        }
+        #music_btns{
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+        audio{
+            margin:5px;
+        }
+        #play, #stop{
+            width:100px;
+            margin-top:5px;
+            margin-bottom:5px;
+        }
+    }
+    animation-name:fade-in;
+    animation-duration:4s;
+    animation-timing-function:ease-in;
+    animation-delay:0ms;
+}
+
+
+@keyframes fade-in {
+    0% {opacity:0}
+    100% {opacity:1}
+}
+
+#img_post_btn:active, #play:active, #stop:active, #to_top:active{
+    opacity:.8;
+}
+
+#to_top {
+    animation-name:fade-in;
+    animation-duration:4s;
+    animation-timing-function:ease-in;
+    animation-delay:0ms;
+    background:#eee;
+}
+
+footer{
+    padding: 20px 0;
+    background: #323135;
+    // background: #6d819c;
+    color: #98969c;
+    // color: #272343;
+    font-weight:bold;
+    text-align: center;
+    animation-name:fade-in;
+    animation-duration:5s;
+    animation-timing-function:ease-in;
+    animation-delay:0ms;
+    ul {
+        list-style:none;
+        margin:20px 0;
+        padding:0;
+        li{
+            margin:20px 5px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size:12px;
+            font-weight:none;
+            img{
+                margin-right:20px;
+                width:100px;
+                height:100px;
+                border-radius:50%;
+            }
+            .member_desc{
+                margin:0;padding:0;
+            }
+            h1 {
+                margin:10px;
+                font-size:20px;
+                font-weight:bold;
+                color:#f9f9f9;
+            }
+            p {
+                margin:0px;
+            }
+        }
+    }
+}
+
+
+@media (min-width: 900px) {
+    #img_post_btn:hover, #play:hover, #stop:hover, #to_top:hover{
+        opacity:.8;
+    }
+    
+    header{
+        font-size:2em;
+        padding-bottom:60px;
+    }
+    
+    footer{
+        ul{
+            display:flex;
+            justify-content: center;
+            align-items: center;
+            li {
+                // margin:0 50px !important;
+                margin:0 auto;
+                flex-direction:column;
+                img{
+                    width:150px;
+                    height:150px;
+                    margin-right:0px !important;
+                }
+            }
+        }
+    }
+    
+    #img_form_container {
+        margin: 30px 50px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        p {
+            margin:10px;
+            margin-right:50px;
+            font-weight:bold;
+            color:#666;
+        }
+        .container{
+            margin:10px;
+        }
+    }
+    
+    #app_description {
+        margin: 30px 50px;
+        .main_desp{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 200px;
+            h1 {
+                width:500px;
+            }
+        }
+        ul {
+            li{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100px;
+                h1 {
+                    width:300px;
+                }
+            }
+        }
+    }
+    
+    #data_responce {
+        margin: 30px 50px;
+        padding: 20px;
+        #music_player{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin:20px auto;
+            audio{
+                margin-right:40px;
+            }
+            #music_btns{
+                // margin:5px;
+                div {
+                    margin:5px;
+                    width:150px;
+                }
+            }
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+// ここから佐藤健介レイアウト
+.key_visual {
+    height: 400px;
+    position: relative;
+    .key_flex_box {
+        display: flex;
+        width: 100%;
+        .key_flex {
+            text-align: center;
+            margin: auto;
+            /* padding-top: 200px; */
+            z-index: 10;
+            width: 30%;
+            .topVisual {
+                text-align: center;
+                margin: auto;
+                // z-index: 10;
+                /* width: 50%; */
+                padding-top: 40px;
+                max-height: 360px;
+                width: auto; //--追加--野口----------------------
+                // width: 100%;
+                vertical-align: bottom;
+            }
+            .topTitle {
+                text-align: left;
+                margin-right: auto;
+                z-index: 10;
+                /* width: 50%; */
+                padding-top: 20px;
+                // height: 300px;
+                width: 80%;
+            }
+        }
+        .key_30 {
+            width: 30%;
+        }
+        .key_70 {
+            width: 70%;
+            margin-right: auto;
+            text-align:left
+        }
+        .pc_key_70 {
+            width: 70%;
+            margin-right: auto;
+            text-align:left
+        }
+        
+        .s_key_70 {
+            display: none;
+        }
+    }
+    .key_mask {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        width: 100%;
+        height: 400px;
+        background: #fff;
+        opacity: 0.2;
+        z-index: 0;
+    }
+    // .key_mask2 {
+    //     position: absolute;
+    //     top: 400px;
+    //     left: 0px;
+    //     width: 100%;
+    //     height: 20px;
+    //     background: #f9f9f9;
+    //     opacity: 1.0;
+    //     z-index: 0;
+    // }
+    .transition_bg {
+        position: absolute;
+        top: -15px;
+        left: 0px;
+        width: 100%;
+        height: 400px;
+        z-index: -1;
+        padding: 0;
+    
+        li {
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: 50% 50%;
+            background-repeat: none;
+            opacity: 0;
+            -webkit-animation: anime 28s linear 0s infinite ;
+            animation: anime 28s linear 0s infinite ;
+        }
+        li:nth-child(1) { 
+          background-image: url(../image/key_visual/key_visual_1.jpg);
+        }
+        li:nth-child(2) {
+          background-image: url(../image/key_visual/key_visual_2.jpg);
+          -webkit-animation-delay: 4s;
+          animation-delay: 4s;
+        }
+        li:nth-child(3) {
+          background-image: url(../image/key_visual/key_visual_3.jpg);
+          -webkit-animation-delay: 8s;
+          animation-delay: 8s;
+        }
+        li:nth-child(4) {
+          background-image: url(../image/key_visual/key_visual_8.jpg);
+          -webkit-animation-delay: 12s;
+          animation-delay: 12s;
+        }
+        li:nth-child(5) { 
+          background-image: url(../image/key_visual/key_visual_5.jpg);
+          -webkit-animation-delay: 16s;
+          animation-delay: 16s;
+        }
+        li:nth-child(6) {
+          background-image: url(../image/key_visual/key_visual_6.jpg);
+          -webkit-animation-delay: 20s;
+          animation-delay: 20s;
+        }
+        li:nth-child(7) {
+          background-image: url(../image/key_visual/key_visual_7.jpg);
+          -webkit-animation-delay: 24s;
+          animation-delay: 24s;
+        }
+    }
+}
+    
+
+@-webkit-keyframes anime { 
+  0% {
+      -webkit-animation-timing-function: liner;
+      opacity: 0;
+  }
+  5% {
+      /* -webkit-transform: scale(1.1); */
+      opacity: 1;
+  }
+  30% {
+    //   -webkit-transform: scale(0 1.05);
+          -webkit-animation-timing-function: liner;
+      opacity: 1;
+  }
+  50% {
+    //   -webkit-transform: scale(0 1.1);
+      opacity: 0;
+  }
+  100% { opacity: 0 }
+}
+@keyframes anime { 
+  0% {
+      animation-timing-function: liner;
+      opacity: 0;
+  }
+  5% {
+      /* transform: scale(1.1); */
+      opacity: 1;
+  }
+  30% {
+    //   transform: scale(0 1.05);
+          animation-timing-function: liner;
+      opacity: 1;
+  }
+  50% {
+    //   transform: scale(0 1.1);
+      opacity: 0;
+  }
+  100% { opacity: 0 }
+}
+
+// 使い方section
+.how {
+    max-width: 1100px;
+    width: 90%;
+    // margin: 30px 50px;
+    margin: auto;
+    h1 {
+        // padding-left: 5px;
+        text-align: center;
+        font-size: 40px;
+        letter-spacing: 8px;
+        font-weight: normal;
+    }
+    .how_contents {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        .flex_circle {
+            max-width: 300px;
+            width: 30%;
+            img {
+                width: 100%;
+            }
+        }
+    }
+}
+
+
+.how_container {
+    margin: auto;
+    text-align: center;
+    .how_flex {
+        margin: 30px 50px;
+        display: flex;
+        justify-content: space-between;
+        max-width: 1100px;
+        .how_circle {
+            text-align: center;
+            width: 270px;
+            height: 270px;
+            background: #dadada;
+            border-radius: 50%;
+            p {
+                color: #fff;
+                font-size: 32px;
+                letter-spacing: 5px;
+                margin: 0;
+            }
+            .num {
+                padding-top: 10px;
+            }
+            .ppp {
+                padding: 1px;
+            }
+            img {
+                margin-top: -20px;
+                margin-left: 5px;
+                width: 100%;
+                padding-bottom: 5px;
+                display: block;
+            }
+        }
+    }
+}
+
+@media (max-width: 800px) {
+    .topVisual{ //--追加--野口----------------------
+        width:100% !important;
+    }
+    .pc_key_70 {
+        display: none;
+    }
+    .key_visual .key_flex_box .s_key_70 {
+        display: block;
+    }
+    .how {
+        h1 {
+            font-size: 28px;
+            letter-spacing: 6px;
+        }
+    }
+}
+@media (max-width: 500px) {
+    .key_visual {
+        height: 250px;
+        
+        .key_mask {
+        height: 250px;
+        }
+        .transition_bg {
+            height: 250px;
+        }
+    }
+    .how {
+        h1 {
+            font-size: 20px;
+            letter-spacing: 4px;
+        }
+    }
+}

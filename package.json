@@ -1,0 +1,23 @@
+{
+  "name": "bgm",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "dependencies": {
+    "@line/bot-sdk": "^7.1.0",
+    "connect-multiparty": "^2.2.0",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "jimp": "^0.16.1",
+    "multer": "^1.4.2",
+    "node-sass": "^5.0.0",
+    "pug": "^3.0.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "compile:sass": "node-sass sass/main.scss public/css/style.css -w"
+  },
+  "author": "",
+  "license": "ISC"
+}
