@@ -1,10 +1,10 @@
 #   Photune
 
-### [Webサイト](https://www.mokumokuver3.tk:3000/)へ  
+### [Webサイト](https://www.mokumokuver3.tk:3000/)  
 ### LINE友達登録  
 <img src="https://www.mokumokuver3.tk:3000/image/L.png" height="100">
-![QRコード](https://www.mokumokuver3.tk:3000/image/L.png)  
 <a href="https://lin.ee/wJWCp8E" target="_blank"><img src="https://scdn.line-apps.com/n/line_add_friends/btn/ja.png" alt="友だち追加" height="36" border="0"></a>
+<!-- ![QRコード](https://www.mokumokuver3.tk:3000/image/L.png) --> 
 
 [![IMAGE ALT TEXT HERE](https://jphacks.com/wp-content/uploads/2020/09/JPHACKS2020_ogp.jpg)](https://www.youtube.com/watch?v=G5rULR53uMk)
 
