@@ -6,33 +6,33 @@ body{
     margin:0;
 }
 
-header{
-    background:#eee;
-    // background:#6d819c;
-    text-align: center;
-    padding-top:64px;
-    padding-bottom:20px;
-    margin:0;
-    font-size:2em;
-    animation-name:fade-in;
-    animation-duration:1s;
-    animation-timing-function:ease-in;
-    animation-delay:0ms;
-    h1{
-        margin:0;padding:0;
-        color:#3e4149;
-    }
-    p{
-        margin:0;padding:0;
-        color:#666;
-    }
-}
+// header{
+//     background:#eee;
+//     // background:#6d819c;
+//     text-align: center;
+//     padding-top:64px;
+//     padding-bottom:20px;
+//     margin:0;
+//     font-size:2em;
+//     animation-name:fade-in;
+//     animation-duration:1s;
+//     animation-timing-function:ease-in;
+//     animation-delay:0ms;
+//     h1{
+//         margin:0;padding:0;
+//         color:#3e4149;
+//     }
+//     p{
+//         margin:0;padding:0;
+//         color:#666;
+//     }
+// }
 
 #img_post_btn, #play, #stop, #to_top{
     cursor: pointer;
     width:200px;
     border: 1px solid #ccc;
-    border-radius:4px;
+    border-radius:5px; // どんぐり変更
     text-align: center;
     padding:12px 0;
     margin: 16px auto;
@@ -41,11 +41,12 @@ header{
 }
 
 #img_form_container{
-    background:#eee;
+    // background:#eee;
     // background:#e4e7ec;
+    background: #dadada;
     margin:10px;
     padding:10px;
-    border-radius:7px;
+    border-radius:5px; // どんぐり変更
     animation-name:fade-in;
     animation-duration:2s;
     animation-timing-function:ease-in;
@@ -69,11 +70,12 @@ header{
 
 
 #app_description {
-    background:#eee;
+    // background:#eee;
+    background: #dadada;
     // background:#55967e;
     margin:10px;
     padding:10px;
-    border-radius:7px;
+    border-radius:5px; // どんぐり変更
     animation-name:fade-in;
     animation-duration:3s;
     animation-timing-function:ease-in;
@@ -98,9 +100,10 @@ header{
     }
 }
 #data_responce{
-    background:#eee;
+    // background:#eee;
     // background:#e4e7ec;
-    border-radius:7px;
+    border-radius:5px; //どんぐり変更
+    background: #dadada;
     margin:10px;
     padding:10px;
     text-align:center;
@@ -537,6 +540,97 @@ footer{
     }
 }
 
+// .line_reg {
+//     // margin: 30px 50px;
+//     .line_reg_container {
+//         border-radius: 5px;
+//         background: #dadada;
+//         margin: 30px 50px;
+//         display: flex;
+//         .flex_cont {
+//             display: flex;
+//             margin : auto;
+//             height: 80px;
+//             padding: 10px;
+//             .flex_item {
+//                 height: 60px;
+                
+//                 .line_link {
+//                     height: 100%;
+//                     display: block;
+//                     img {
+//                         height: 100%;
+//                         vertical-align: bottom;
+//                     }
+//                 }
+//                 p {
+//                     margin: 0;
+//                 }
+//             }
+//         }
+//     }
+// }
+
+
+.menuContainer {
+    padding: 0;
+    .photoMenu {
+            position: fixed;
+            left: 0;
+            top: 0px;
+            width: 90%;
+            margin: auto;
+            z-index: 100;
+            transition: 1.0s;
+            opacity: 1.0;
+            display: flex;
+            visibility: visible;
+            .photoMenu {
+                #name {
+                    color: #f3175a;
+                    a {
+                        font-size: 14px;
+                        color: #f3175a;
+                        text-decoration: none;
+                        padding: 0;
+                        margin: 0;
+                        transition: 0.6s;
+                    }
+                }
+            }
+            .photoMenu #name a:hover {
+                color: #f88bac;
+            }
+        }
+        .photoMenu.hide {
+            visibility: hidden;
+            opacity: 0;
+        }
+        .photoMenuMask {
+            width: 100%;
+            height: 130px;
+            position: fixed;
+            left: 0px;
+            top: 0px;
+            z-index: 100;
+            opacity: 0.5;
+            visibility: visible;
+            background: #fff;
+        }
+        .photoMenuMask.hide {
+            opacity: 0;
+            visibility: hidden;
+            transition: 1.0s;
+        }
+}
+
+
+
+@media (max-width: 900px) {
+    .line_reg_container {
+        margin: 10px;
+    }
+}
 @media (max-width: 800px) {
     .topVisual{ //--追加--野口----------------------
         width:100% !important;

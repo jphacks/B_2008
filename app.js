@@ -7,6 +7,8 @@ const https = require( 'https' );
 const line = require('@line/bot-sdk');
 const jimp = require("jimp")
 require("dotenv").config();
+require('@tensorflow/tfjs');
+const use = require('@tensorflow-models/universal-sentence-encoder');
 
 const app = express();
 
@@ -83,7 +85,7 @@ function rgb2hsv ( rgb ) {
 	return [ h, s, v ] ;
 };
 
-function choice_musics(img_buffer) {// 今は明度だけで適当にやっている
+function choice_musics(img_buffer) {
     return new Promise(resolve =>{
         let h_sum = 0;
         let s_sum = 0;
@@ -144,6 +146,52 @@ function choice_musics(img_buffer) {// 今は明度だけで適当にやって�
         
     });
 };
+
+//apiを使う時用
+function choice_musics_with_ml(img_buffer) {
+    return new Promise(resolve =>{
+        use.load().then(model => {
+            // Embed an array of sentences.
+            //work API here
+            //
+            //
+            const labels= [];
+            const label_weights =[];
+            
+            model.embed(labels).then(embeddings => {
+              // `embeddings` is a 2D tensor consisting of the 512-dimensional embeddings for each sentence.
+              // So in this example `embeddings` has the shape [2, 512];
+              return embeddings.array()
+            }).then((array) => {
+                
+                    for(let i = 0;i<512;i++){ // use return 512 vectors
+                        for()                        
+                        for(let k = 0; k < title_vectors.length; k++){
+                            scores.push(dotProduct(array[i],title_vectors[k]));
+                        }
+                    }
+                });
+            });
+  　    });
+    });
+}
+const title_vectors = fs.readFileSync("public/data/embed_vector.json");
+// Calculate the dot product of two vector arrays.
+const dotProduct = (xs, ys) => {
+  const sum = xs => xs ? xs.reduce((a, b) => a + b, 0) : undefined;
+
+  return xs.length === ys.length ?
+    sum(zipWith((a, b) => a * b, xs, ys))
+    : undefined;
+}
+
+// zipWith :: (a -> b -> c) -> [a] -> [b] -> [c]
+const zipWith =
+    (f, xs, ys) => {
+      const ny = ys.length;
+      return (xs.length <= ny ? xs : xs.slice(0, ny))
+          .map((x, i) => f(x, ys[i]));
+    };
 
 const music_title = ["calm", "excited", "fashionable", "funny", "relax", "mirai_komachi"];
 const calm = ["calm/cafebossa.mp3", "calm/NOIR.mp3", "calm/Rhodes_Trip.mp3", "calm/Silence.mp3", "calm/落ち着いた？.mp3"];
