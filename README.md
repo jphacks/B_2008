@@ -46,7 +46,7 @@
 画像の送信にはWebサイト、LINEアプリの2通りの方法があり、様々な機器や状況で利用が可能。  
 
 #### 2. 適切な音楽  
-~~Amazon Rekognitionを利用することで機械学習による高精度な画像認識が実現。~~  
+Amazon Rekognitionを利用することで機械学習による高精度な画像認識が実現。  
 画像から風景や状況などの情報が的確に抽出されることで、画像だけで状況に適した音楽を推薦することが出来る。  
 
 #### 3. 豊富な楽曲  
@@ -73,12 +73,13 @@
 ### 活用した技術
 #### API・データ
 * LINE MessagingAPI
-* ~~Amazon Rekognition~~
+* Amazon Rekognition
 
 #### フレームワーク・ライブラリ・モジュール
 * Node.js (express)
 * AWS EC2
 * HTML/CSS(pug, sass), JavaScript
+* TensolFlow.js
 
 ### 独自技術
 #### ハッカソンで開発した独自機能・技術
