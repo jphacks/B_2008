@@ -7,7 +7,7 @@
 <!-- ![QRコード](https://www.mokumokuver3.tk:3000/image/L.png) --> 
 [デモ動画](https://youtu.be/eT1Q5-GsnH8)
 
-[![IMAGE ALT TEXT HERE](https://i.imgur.com/Ri8vJHb.png)](https://youtu.be/eT1Q5-GsnH8)
+[![IMAGE ALT TEXT HERE](https://i.imgur.com/Ri8vJHb.png)](https://youtu.be/nmFOEUtyYwc)
 
 ##  製品概要
 ### 開発テーマ
@@ -82,6 +82,7 @@ Amazon Rekognition利用することで機械学習による高精度な画像�
 * AWS EC2
 * HTML/CSS(pug, sass), JavaScript
 * TensorFlow.js
+* Universal Sentence Encoder
 
 ### 独自技術
 #### ハッカソンで開発した独自機能・技術
