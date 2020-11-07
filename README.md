@@ -6,7 +6,7 @@
 <img src="https://www.mokumokuver3.tk:3000/image/L.png" height="100">
 <!-- ![QRコード](https://www.mokumokuver3.tk:3000/image/L.png) --> 
 
-[![IMAGE ALT TEXT HERE](https://jphacks.com/wp-content/uploads/2020/09/JPHACKS2020_ogp.jpg)](https://www.youtube.com/watch?v=G5rULR53uMk)
+[![IMAGE ALT TEXT HERE](https://i.imgur.com/Ri8vJHb.png)](https://youtu.be/eT1Q5-GsnH8)
 
 ##  製品概要
 ### 開発テーマ
