@@ -562,6 +562,9 @@ footer {
   margin: 16px auto;
   font-weight: bold; }
 
+#reload_btn {
+  margin: 20px auto; }
+
 #img_post_btn:hover, #play:hover, #stop:hover, #to_top:hover, #reload_btn:hover {
   -webkit-transform: translateY(1px);
   transform: translateY(1px);
@@ -648,7 +651,7 @@ footer {
     color: black;
     background-color: #eee;
     margin-right: 15px;
-    opacity: .2; }
+    opacity: .4; }
   #checkbox-block .radio_up8ch_btn:hover {
     cursor: pointer; }
   #checkbox-block input[type="radio"] {
@@ -671,6 +674,8 @@ footer {
   justify-content: center; }
   #img2audio_block #img_form_container {
     display: block;
+    margin: 10px 50px 0 50px;
+    padding-bottom: 0;
     border-radius: 7px;
     text-align: center;
     width: 90%;
@@ -680,9 +685,12 @@ footer {
     #img2audio_block #img_form_container #upload_form > * {
       margin-top: 10px; }
     #img2audio_block #img_form_container #choise_img > * {
-      margin-top: 40px; }
+      margin-top: 20px; }
     #img2audio_block #img_form_container #img_file {
       display: none; }
+    #img2audio_block #img_form_container #preview img {
+      max-height: 300px;
+      max-width: 20%; }
     #img2audio_block #img_form_container #preview p {
       margin-top: -24px; }
     #img2audio_block #img_form_container #sample_img_post_form {
@@ -692,6 +700,7 @@ footer {
         width: 15%; }
         #img2audio_block #img_form_container #sample_img_post_form .sm_im_cn img {
           width: 90%;
+          height: 100%;
           opacity: 0.3;
           box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.8);
           border-radius: 4px; }
@@ -714,8 +723,8 @@ footer {
     padding: 10px;
     margin: 10px; }
     #img2audio_block #data_responce #res_img_block img {
-      max-width: 500px;
-      width: 100%;
+      max-height: 300px;
+      max-width: 30%;
       box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.8);
       border-radius: 4px; }
     #img2audio_block #data_responce #music_player {
@@ -727,6 +736,23 @@ footer {
   margin-right: 5px;
   font-size: 2em;
   font-weight: bold; }
+
+@media (max-width: 500px) {
+  #res_img_block img {
+    max-height: 500px !important;
+    max-width: 90% !important;
+    width: 100% !important; }
+  #preview img {
+    max-height: 500px !important;
+    max-width: 90% !important;
+    width: 100% !important; }
+  #img2audio_block #img_form_container {
+    margin-left: 10px !important;
+    margin-right: 10px !important; }
+  #sample_img_preview img {
+    width: 80% !important; }
+  #sample_img_post_form .sm_im_cn {
+    width: 32% !important; } }
 
 .btn,
 button.btn {

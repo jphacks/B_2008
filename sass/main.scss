@@ -831,6 +831,9 @@ footer{
   font-weight: bold;
   //background:#f9f9f9;
 }
+#reload_btn {
+    margin: 20px auto;  // どんぐり変更
+}
 #img_post_btn:hover, #play:hover, #stop:hover, #to_top:hover, #reload_btn:hover{
   -webkit-transform: translateY(1px);
   transform: translateY(1px);
@@ -921,7 +924,7 @@ footer{
   
     //margin: 10px auto;
     margin-right:15px;
-    opacity:.2;
+    opacity:.4;  // どんぐり変更
   }
   .radio_up8ch_btn:hover{
     //opacity:.4;
@@ -967,6 +970,8 @@ footer{
 
   #img_form_container{
     display:block;
+    margin: 10px 50px 0 50px; // 変更どんぐり
+    padding-bottom : 0;  //変更どんぐり
     #checkbox-block{
     //   margin-top:30px;  変更どんぐり
       margin-top:10px;
@@ -979,7 +984,8 @@ footer{
     }
     #choise_img{
       > *{
-        margin-top:40px;
+        // margin-top:40px;
+        margin-top: 20px;
       }
     }
     #img_file {
@@ -993,10 +999,8 @@ footer{
     align-items:center;
     #preview {
         img{
-            //max-height:100px;
-            //max-width:100px;
-            //width:200px;
-            // width: 90%;
+            max-height:300px;
+            max-width:20%;
         }
         p {
             margin-top: -24px; //変更どんぐり
@@ -1017,6 +1021,7 @@ footer{
           //align-items:center;
           //justify-content:flex-end;
           width:90%;
+          height: 100%;  // どんぐり変更　
           opacity:0.3;
           box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.8);
           border-radius: 4px;
@@ -1056,9 +1061,9 @@ footer{
     margin:10px;
     #res_img_block{
         img{
-            // max-height:300px;
-            max-width:500px;
-            width: 100%;
+            max-height:300px; 
+            max-width:30%;  
+
             box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.8);
             border-radius: 4px;
         }
@@ -1091,13 +1096,34 @@ footer{
 @media (max-width: 500px) {
     #res_img_block{
         img{
-            //width: 100%;
+            max-height:500px !important; 
+            max-width:90% !important;  
+            width: 100% !important;
         }
     }
     #preview {
         img{
-            //width: 90%;
+            max-height:500px !important; 
+            max-width:90% !important;  
+            width: 100% !important;
         }
+    }
+    #img2audio_block{
+      #img_form_container{
+        margin-left:10px !important;
+        margin-right:10px !important;
+      }
+    }
+    #sample_img_preview{
+      img {
+        //opacity:0.3 !important;
+        width:80% !important;
+      }
+    }
+    #sample_img_post_form{
+      .sm_im_cn {
+        width:32% !important;
+      }
     }
 }
 

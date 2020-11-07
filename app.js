@@ -403,25 +403,26 @@ async function handleEvent(event) {
                     buffers.push(chunk);
                 });
                 stream.on('end', async () => {
-                    const index = await choice_musics_with_ml(Buffer.concat(buffers));
+                    
+                    const index = await choice_musics(Buffer.concat(buffers));
                     console.log("index :"+index);
-                    fs.writeFile('./img.jpg', Buffer.concat(buffers), 'utf-8', (err) => {
-                    if(err) {
-                        console.log(err);
-                        return;
-                    }
-                        console.log('img:saved');
-                        return client.replyMessage(event.replyToken, {
-                            type: 'text',
-                            // text: "画像を受け取りました！\nhttps://www.mokumokuver3.tk:3000"
-                            text: `画像を受け取りました！\nhttps://www.mokumokuver3.tk:3000/music_player?index=${index}`
-                        });
+                        // fs.writeFile('./img.jpg', Buffer.concat(buffers), 'utf-8', (err) => {
+                        // if(err) {
+                        //     console.log(err);
+                        //     return;
+                        // }
+                    console.log('img:saved');
+                    return client.replyMessage(event.replyToken, {
+                        type: 'text',
+                        // text: "画像を受け取りました！\nhttps://www.mokumokuver3.tk:3000"
+                        text: `画像を受け取りました！\nhttps://www.mokumokuver3.tk:3000/music_player?index=${index}`
                     });
                 });
                 stream.on('error', (err) => {
                     console.log("img:error",err);
                 });
             });
+        // });
         }else{
             return Promise.resolve(null);
         }
