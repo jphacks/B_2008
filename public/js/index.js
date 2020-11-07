@@ -1,30 +1,39 @@
 
 // スクロールによって表示されるヘッダー
-console.log('kensuke');
 var startPosition = 0;
 function setStartPosition(){
     startPosition = document.documentElement.scrollTop;
 }
 function getStartPosition(){
-  //console.log(startPosition);
   return startPosition;
 }
 window.addEventListener('scroll', function(){
-  console.log("scroll:");
-  console.log(document.documentElement.scrollTop);
-  console.log("sp:");
-  //console.log(startPosition);
-  console.log(getStartPosition());
-  //if (document.documentElement.scrollTop < startPosition) {
-  if (document.documentElement.scrollTop < getStartPosition()) {
-      document.getElementsByClassName('photoMenu').classList.remove('hide');
-      document.getElementsByClassName('photoMenuMask').classList.remove('hide');
-    } else {
-      document.getElementsByClassName('photoMenu').classList.add("hide");
-      document.getElementsByClassName('photoMenuMask').classList.add('hide');
-    }
-    //startPosition = document.documentElement.scrollTop;
-    setStartPosition();
+
+  let pos1 =getStartPosition();
+  setStartPosition();
+  let pos2 =getStartPosition();
+  let del_pos =pos2 -pos1;
+
+   //console.log("----");
+   //console.log(del_pos);
+  let pMenu = document.getElementsByClassName('photoMenu')[0];
+  let pMask = document.getElementsByClassName('photoMenuMask')[0];
+  if(del_pos <= 0) {
+    pMenu.classList.remove('hide');
+    pMask.classList.remove('hide');
+  }  else {
+    pMenu.classList.add("hide");
+    pMask.classList.add('hide');
+  }
+
+
+  //if (document.documentElement.scrollTop < getStartPosition()) {
+  //    document.getElementsByClassName('photoMenu').classList.remove('hide');
+  //    document.getElementsByClassName('photoMenuMask').classList.remove('hide');
+  //} else {
+  //    document.getElementsByClassName('photoMenu').classList.add("hide");
+  //    document.getElementsByClassName('photoMenuMask').classList.add('hide');
+  //}
 });
 // いつか実装したjQuery版
   // var startPosition = 0;
@@ -40,6 +49,41 @@ window.addEventListener('scroll', function(){
   //   }
   //   startPosition = $(this).scrollTop();
   // });
+
+
+
+
+
+
+
+
+//----------------------
+//
+//	let XHR4load = new XMLHttpRequest();
+//
+//	// openメソッドにPOSTを指定して送信先のURLを指定します
+//	
+//	//XHR4load.open("POST", "/img_post", true);
+//	// XHR4load.setRequestHeader( 'content-type', 'application/x-www-form-urlencoded;charset=UTF-8' );
+//	// //XHR4load.setRequestHeader( 'content-type', 'application/json' );
+//
+//	//// sendメソッドにデータを渡して送信を実行する
+//	//XHR4load.send(sendData);
+//
+//	// サーバの応答をonreadystatechangeイベントで検出して正常終了したらデータを取得する
+//	XHR4load.onreadystatechange = function(){
+//		//if(XHR4load.readyState == 4 && XHR4load.status == 200){
+//		if(XHR4load.readyState == 3){
+//          console.log("loading");
+//		}
+//		else{
+//          console.log("not loading");
+//			//document.getElementById("result_response").textContent = XHR.responseText;
+//		}
+//	};
+//----------------------
+
+
 
 //プレビュー
 function previewFile(file) {
@@ -77,12 +121,12 @@ fileInput.addEventListener('change', handleFileSelect);
 //画像の送信
 document.getElementById("img_post_btn").addEventListener("click", function(){
 // 	FoemDataオブジェクトに要素セレクタを渡して宣言する
-	console.log("post?");
+// 	console.log("post中...");
 	const formDatas = document.getElementById("img_post_form");
       
-  console.log(formDatas);
+  // console.log(formDatas);
   const sendData = new FormData(formDatas);
-  console.log(sendData);
+  // console.log(sendData);
   
 	var XHR = new XMLHttpRequest();
 
@@ -94,12 +138,21 @@ document.getElementById("img_post_btn").addEventListener("click", function(){
 
 	// sendメソッドにデータを渡して送信を実行する
 	XHR.send(sendData);
+	document.getElementById("result_response").textContent = "now loading...";
+  const loading = document.createElement('div');
+  loading.classList.add("loading");
+  loading.setAttribute("id", "loading");
+  document.getElementById("result_response").appendChild(loading);
+  console.log("post!");
+  console.log("loading...");
 
 	// サーバの応答をonreadystatechangeイベントで検出して正常終了したらデータを取得する
 	XHR.onreadystatechange = function(){
 		if(XHR.readyState == 4 && XHR.status == 200){
 		  const res = JSON.parse(XHR.responseText);
-		  console.log(res);
+		  // console.log(res);
+      console.log(res.audio_title);
+			document.getElementById("result_response").removeChild(document.getElementById("result_response").firstChild);
 			document.getElementById("result_response").textContent = res.audio_title;
 		// 	document.getElementById("audio_list").textContent = res.audio_list;
 			audio_list = res.audio_list;
@@ -122,8 +175,9 @@ function Add_music(audio_list){
   // const player1 = new Audio('music/'+audio_list[Math.round( Math.random()* (audio_list.length-1) )]);
   const player1 = new Audio("music/"+audio_list[Math.round( Math.random()* (audio_list.length-1) )]);
   player1.setAttribute("preload", "auto");
-  console.log(player1.getAttribute("src"));
+  // console.log(player1.getAttribute("src"));
   player1.preload = "auto";
+  player1.volume = "0.01";
   player1.controls = true;
   const music_btns = document.createElement('div');
   const playdiv = document.createElement('div');
@@ -156,7 +210,7 @@ function Add_music(audio_list){
       player1.setAttribute('src', "music/"+audio_list[i]);
 	  }
     player1.play()
-    console.log(player1.getAttribute("src"));
+    // console.log(player1.getAttribute("src"));
 	} ,false);
 	
   // const data_responce = document.getElementById('data_responce');
@@ -255,7 +309,7 @@ document.getElementById("sample_img_post_btn").addEventListener("click", functio
 //alert("hi")
  //hide_el2();
 // 	FoemDataオブジェクトに要素セレクタを渡して宣言する
-	console.log("post?");
+// 	console.log("post?");
 	//const formDatas = document.getElementById("img_post_form");
 	const formDatas = document.getElementById("sample_img_post_form");
 	const radio_val = document.getElementById("sample_img_post_form").radio_imgnum.value;
@@ -282,8 +336,8 @@ document.getElementById("sample_img_post_btn").addEventListener("click", functio
 	XHR.onreadystatechange = function(){
 		if(XHR.readyState == 4 && XHR.status == 200){
 		  const res = JSON.parse(XHR.responseText);
-		  console.log(res);
-			document.getElementById("result_response").textContent = "BGMM!: "+res.audio_title;
+		  // console.log(res);
+			document.getElementById("result_response").textContent =res.audio_title;
 		// 	document.getElementById("audio_list").textContent = res.audio_list;
 			audio_list = res.audio_list;
 			Add_music(audio_list);

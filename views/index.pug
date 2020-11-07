@@ -96,47 +96,48 @@ html(lang="ja")
                       .radio_up8ch_btn サンプルから<br>選択
 
                     
-                #upload_form(style="display:block")
-                    p 画像を送信してください
-                    form#img_post_form 
-                        label
-                            #camera_icon_btn
-                                img(src="image/camera_icon.png")
-                                span CHOOSE!
+                #tab_page_block
+                    #upload_form(style="display:block") Post!から送信してください<br>未選択でランダム再生が出来ます
+                        form#img_post_form 
+                            label
+                                #camera_icon_btn
+                                    img(src="image/camera_icon.png")
+                                    span CHOOSE!
+                                br
+                                input(type="file" name="img" id="img_file" accept="image/*"  required)
                             br
-                            input(type="file" name="img" id="img_file" accept="image/*"  required)
-                        br
-                    #preview
-                        p 画像が選択されていません
-                    .container
-                        #img_post_btn(onclick="show_post_res_img()") POST!
+                        #preview
+                            p (画像が選択されていません)
+                        .container
+                            #img_post_btn(onclick="show_post_res_img()") POST!
 
-                #choise_img(style="display:none")
-                    p 画像を選択してください
+                    #choise_img(style="display:none") 画像を選択してください
 
-                    form(method="post", action="/choose_img")#sample_img_post_form
-                      - for (var index = 0; index < 3; index++)
-                         .sm_im_cn(id=`radio_img_con${index}`)
-                           - var radimg_id =`form_img_${index}`
-                           if index==0
-                             input(type="radio", name="radio_imgnum", id=`${radimg_id}`, value=`${index}` onChange="show_sample_preview()"  checked)
-                           else
-                             input(type="radio", name="radio_imgnum", id=`${radimg_id}`, value=`${index}` onChange="show_sample_preview()")
-                           label(for=`${radimg_id}`) 
-                             img(src=`image/sample${index}.jpg`)
-                    #sample_img_preview
-                        img(src=`image/sample0.jpg` width="30%")
-                    .container
-                        #sample_img_post_btn(onclick="show_sample_main_img()") POST!
-                #data_responce
-                    #res_img_block
-                    p#result_response
-                    p#audio_list
-                    #music_player
+                        form(method="post", action="/choose_img")#sample_img_post_form
+                          - for (var index = 0; index < 3; index++)
+                             .sm_im_cn(id=`radio_img_con${index}`)
+                               - var radimg_id =`form_img_${index}`
+                               if index==0
+                                 input(type="radio", name="radio_imgnum", id=`${radimg_id}`, value=`${index}` onChange="show_sample_preview()"  checked)
+                               else
+                                 input(type="radio", name="radio_imgnum", id=`${radimg_id}`, value=`${index}` onChange="show_sample_preview()")
+                               label(for=`${radimg_id}`) 
+                                 img(src=`image/sample${index}.jpg`)
+                        #sample_img_preview
+                            img(src=`image/sample0.jpg` width="30%")
+                        .container
+                            #sample_img_post_btn(onclick="show_sample_main_img()") POST!
+                            //  .btn.btn-border(onclick="show_sample_main_img()") POST!
+                    #data_responce
+                        #res_img_block
+                        p#result_response
+                        p#audio_list
+                        #music_player
 
         
+        #reload_btn(onclick="window.location.reload()") Reload
+        // .btn.btn-border(onclick="window.location.reload()") Reload
         // #to_top To TOP
-        
         // LINE追加section
         // section.line_reg
             .line_reg_container

@@ -6,25 +6,26 @@ function setStartPosition(){
     startPosition = document.documentElement.scrollTop;
 }
 function getStartPosition(){
-  //console.log(startPosition);
   return startPosition;
 }
 window.addEventListener('scroll', function(){
-  //console.log("scroll:");
-  //console.log(document.documentElement.scrollTop);
-  //console.log("sp:");
-  ////console.log(startPosition);
-  //console.log(getStartPosition());
-  //if (document.documentElement.scrollTop < startPosition) {
-  if (document.documentElement.scrollTop < getStartPosition()) {
-      document.getElementsByClassName('photoMenu').classList.remove('hide');
-      document.getElementsByClassName('photoMenuMask').classList.remove('hide');
-    } else {
-      document.getElementsByClassName('photoMenu').classList.add("hide");
-      document.getElementsByClassName('photoMenuMask').classList.add('hide');
-    }
-    //startPosition = document.documentElement.scrollTop;
-    setStartPosition();
+
+  //let pos1 =getStartPosition();
+  //setStartPosition();
+  //let pos2 =getStartPosition();
+  //let del_pos =pos2 -pos1;
+
+  //console.log("----");
+  //console.log(del_pos);
+
+
+  //if (document.documentElement.scrollTop < getStartPosition()) {
+  //    document.getElementsByClassName('photoMenu').classList.remove('hide');
+  //    document.getElementsByClassName('photoMenuMask').classList.remove('hide');
+  //} else {
+  //    document.getElementsByClassName('photoMenu').classList.add("hide");
+  //    document.getElementsByClassName('photoMenuMask').classList.add('hide');
+  //}
 });
 // いつか実装したjQuery版
   // var startPosition = 0;
@@ -49,32 +50,36 @@ window.addEventListener('scroll', function(){
 
 
 //----------------------
-
-	let XHR4load = new XMLHttpRequest();
-
-	// openメソッドにPOSTを指定して送信先のURLを指定します
-	
-	//XHR4load.open("POST", "/img_post", true);
-	// XHR4load.setRequestHeader( 'content-type', 'application/x-www-form-urlencoded;charset=UTF-8' );
-	// //XHR4load.setRequestHeader( 'content-type', 'application/json' );
-
-	//// sendメソッドにデータを渡して送信を実行する
-	//XHR4load.send(sendData);
-
-	// サーバの応答をonreadystatechangeイベントで検出して正常終了したらデータを取得する
-	XHR4load.onreadystatechange = function(){
-		//if(XHR4load.readyState == 4 && XHR4load.status == 200){
-		if(XHR4load.readyState == 3){
-          console.log("loading");
-		}
-		else{
-          console.log("not loading");
-			//document.getElementById("result_response").textContent = XHR.responseText;
-		}
-	};
+//
+//	let XHR4load = new XMLHttpRequest();
+//
+//	// openメソッドにPOSTを指定して送信先のURLを指定します
+//	
+//	//XHR4load.open("POST", "/img_post", true);
+//	// XHR4load.setRequestHeader( 'content-type', 'application/x-www-form-urlencoded;charset=UTF-8' );
+//	// //XHR4load.setRequestHeader( 'content-type', 'application/json' );
+//
+//	//// sendメソッドにデータを渡して送信を実行する
+//	//XHR4load.send(sendData);
+//
+//	// サーバの応答をonreadystatechangeイベントで検出して正常終了したらデータを取得する
+//	XHR4load.onreadystatechange = function(){
+//		//if(XHR4load.readyState == 4 && XHR4load.status == 200){
+//		if(XHR4load.readyState == 3){
+//          console.log("loading");
+//		}
+//		else{
+//          console.log("not loading");
+//			//document.getElementById("result_response").textContent = XHR.responseText;
+//		}
+//	};
 //----------------------
 
 
+  var XHR = new XMLHttpRequest();
+  XHR.onloadend =()=>{
+  console.log("load");
+  }
 
 //プレビュー
 function previewFile(file) {
@@ -119,7 +124,7 @@ document.getElementById("img_post_btn").addEventListener("click", function(){
   const sendData = new FormData(formDatas);
   console.log(sendData);
   
-	var XHR = new XMLHttpRequest();
+	//var XHR = new XMLHttpRequest();
 
 	// openメソッドにPOSTを指定して送信先のURLを指定します
 	
@@ -129,6 +134,9 @@ document.getElementById("img_post_btn").addEventListener("click", function(){
 
 	// sendメソッドにデータを渡して送信を実行する
 	XHR.send(sendData);
+  XHR.onloadend =()=>{
+    console.log("load");
+  }
 
 	// サーバの応答をonreadystatechangeイベントで検出して正常終了したらデータを取得する
 	XHR.onreadystatechange = function(){
@@ -302,7 +310,7 @@ document.getElementById("sample_img_post_btn").addEventListener("click", functio
   let sendData = JSON.stringify(person1);
 
   
-	var XHR = new XMLHttpRequest();
+	//var XHR = new XMLHttpRequest();
 
 	// openメソッドにPOSTを指定して送信先のURLを指定します
 	

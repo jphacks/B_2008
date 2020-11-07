@@ -7,8 +7,10 @@ const https = require( 'https' );
 const line = require('@line/bot-sdk');
 const jimp = require("jimp")
 require("dotenv").config();
+// tensorflow.js library
 require('@tensorflow/tfjs');
 const use = require('@tensorflow-models/universal-sentence-encoder');
+// aws rekognition API library
 var AWS = require('aws-sdk');
 var uuid = require('node-uuid');
 const app = express();
@@ -18,13 +20,13 @@ app.set("view engine", "pug");
 app.use(express.static('public'));
 // app.use(express.static('../../s3/mokumoku'));
 app.use(bodyParser.urlencoded({extended: false}));
-// rekognition api no　設定
+// rekognition API config
 const aws_config = new AWS.Config({
  accessKeyId: process.env.REKOGNITION_accessKeyId,
  secretAccessKey:process.env.REKOGNITION_secretAccessKey,
  region: process.env.REKOGNITION_region,
 })
-AWS.config.update(aws_config);
+AWS.config.update(aws_config);// Apply aws config
 //先ほど書いた.envファイルからアクセストークンとチャンネルシークレットを引っ張ってくる。
 const config = {
   channelAccessToken: process.env.CHANNEL_ACCESS_TOKEN,
@@ -40,7 +42,7 @@ const config = {
 // console.log(`server running at http://${adress}:${port}/`);
 
 
-var https_port = 3004;
+var https_port = 3000;
 const options = {
   key: fs.readFileSync( process.env.HTTPS_PRIVATE_KEY ),
   cert: fs.readFileSync( process.env.HTTPS_CERTIFICATION )
@@ -51,7 +53,7 @@ console.log(`server running at https://www.mokumokuver3.tk:${https_port}`);
 
 //--home-----------------------------------
 app.get("/", (req,res,next) => {
-    console.log("home");
+    //console.log("home");
     res.render("index", {title:"photune", message: "何たらするアプリ。"});
 });
 
@@ -90,7 +92,7 @@ function rgb2hsv ( rgb ) {
 
 	return [ h, s, v ] ;
 };
-
+// choice music index from image buffer. use HSV feature.
 function choice_musics(img_buffer) {
     return new Promise(resolve =>{
         let h_sum = 0;
@@ -154,21 +156,20 @@ function choice_musics(img_buffer) {
 };
 
 
-//apiを使う時用
+//aws rekognition APIとTensorFlow.jsを使った音楽推薦関数
 const title_vectors = JSON.parse(fs.readFileSync("public/data/embed_vector.json",'utf8'));
 async function choice_musics_with_ml(rekognition_response) {
-  console.log("funcion is called");
   const music_idx = await use.load().then(model => {
-    console.log("model is loaded.")
+    console.log("TensorFlow.js model is loaded.")
       const labels_name = rekognition_response.Labels.map((label)=>{
         return label.Name;
       });
+      console.log("Detected labels from API response");
       console.log(labels_name);
       const labels_conf = rekognition_response.Labels.map((label)=> label.Confidence);
+      console.log("Detected confidences from API response");
       console.log(labels_conf);
       const music_idx = model.embed(labels_name).then(embeddings => {
-        // `embeddings` is a 2D tensor consisting of the 512-dimensional embeddings for each sentence.
-        // So in this example `embeddings` has the shape [2, 512];
         return embeddings.array()
       }).then(async (arrays) => {
         let weighted_vector = new Array(arrays.length);
@@ -187,18 +188,19 @@ async function choice_musics_with_ml(rekognition_response) {
           title_vectors.forEach((tvec,tidx)=>{
               scores.push([dotProduct(tvec,vector),tidx]);// [cos_sim, title_idx]
           });// ここ大丈夫か？scoresが[]にならない？
+          console.log("Calculate cosine simirality");
           if(scores == []){
-            console.log("scores is []");
+            console.log("simirality is []");
           }
           return scores;
       }).then((scores)=>{
           if(scores == []){
-            console.log("error:score is []");
+            console.log("error:simirality is []");
           }else{
-            console.log("first score is:"+scores);
+            console.log("Calculated simirality is:"+scores);
           }
           scores.sort((a,b) => b[0]-a[0]);// cos_simの降順にソート
-          console.log("sorted score is:" + scores);
+          console.log("sorted simirality is:" + scores);
           return scores[0][1]; // return best similer title_idx= music_idx
       }).catch((err)=>{
           console.log(err);
@@ -266,7 +268,7 @@ app.post('/img_post', upload.single('img'), async function(req, res, next) {
 
 // api用の関数
 app.post('/img_post', upload.single('img'), async function(req, res, next) {
-    console.log(req.file);
+    //console.log(req.file);
     // console.log(req.file.fieldname);
     if(typeof req.file === "undefined"){
         console.log("post:undefined");
@@ -289,10 +291,11 @@ app.post('/img_post', upload.single('img'), async function(req, res, next) {
         client.detectLabels(params, async function(err, response) {
             const music_idx = await choice_musics_with_ml(response);
             // console.log("req.file:", req.file);
-            console.log(`music_idx : ${music_idx}`);
+            console.log("Recommended music list: " + music_title[music_idx]);
+            //console.log(`music_idx : ${music_idx}`);
             //console.log("music_idx :" music_idx);
             console.log(`originalname: ${req.file.originalname}`);
-            console.log(`path: ${req.file.path}`);
+            //console.log(`path: ${req.file.path}`);
             const audio_title = music_title[music_idx];
             const audio_list = music_lists[music_idx];
             res.send(JSON.stringify({ok: true, audio_title, audio_list}))
@@ -400,7 +403,7 @@ async function handleEvent(event) {
                     buffers.push(chunk);
                 });
                 stream.on('end', async () => {
-                    const index = await choice_musics(Buffer.concat(buffers));
+                    const index = await choice_musics_with_ml(Buffer.concat(buffers));
                     console.log("index :"+index);
                     fs.writeFile('./img.jpg', Buffer.concat(buffers), 'utf-8', (err) => {
                     if(err) {
