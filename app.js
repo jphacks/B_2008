@@ -155,59 +155,41 @@ function choice_musics(img_buffer) {
     });
 };
 
-
 //aws rekognition APIとTensorFlow.jsを使った音楽推薦関数
 const title_vectors = JSON.parse(fs.readFileSync("public/data/embed_vector.json",'utf8'));
 async function choice_musics_with_ml(rekognition_response) {
-  const music_idx = await use.load().then(model => {
-    console.log("TensorFlow.js model is loaded.")
-      const labels_name = rekognition_response.Labels.map((label)=>{
-        return label.Name;
-      });
-      console.log("Detected labels from API response");
-      console.log(labels_name);
-      const labels_conf = rekognition_response.Labels.map((label)=> label.Confidence);
-      console.log("Detected confidences from API response");
-      console.log(labels_conf);
-      const music_idx = model.embed(labels_name).then(embeddings => {
-        return embeddings.array()
-      }).then(async (arrays) => {
-        let weighted_vector = new Array(arrays.length);
-        await Promise.all(arrays.map(async (array, idx)=>{
-         weighted_vector[idx] = array.map((val)=>val*labels_conf[idx]);
-        }));
-        const added_vector = weighted_vector.reduce((acc, cur)=>{
-          return acc.map((val,idx)=>{
-            return val + cur[idx];
-          });
-        });// ここ大丈夫か？added_vectorがundefinedにならない？
-        return added_vector;
-      }).then((vector)=>{
-        //console.log("vector is:"+vector);
-          let scores = [];
-          title_vectors.forEach((tvec,tidx)=>{
-              scores.push([dotProduct(tvec,vector),tidx]);// [cos_sim, title_idx]
-          });// ここ大丈夫か？scoresが[]にならない？
-          console.log("Calculate cosine simirality");
-          if(scores == []){
-            console.log("simirality is []");
-          }
-          return scores;
-      }).then((scores)=>{
-          if(scores == []){
-            console.log("error:simirality is []");
-          }else{
-            console.log("Calculated simirality is:"+scores);
-          }
-          scores.sort((a,b) => b[0]-a[0]);// cos_simの降順にソート
-          console.log("sorted simirality is:" + scores);
-          return scores[0][1]; // return best similer title_idx= music_idx
-      }).catch((err)=>{
-          console.log(err);
-      });
-    return music_idx;
+  console.log("funcion is called");
+  const labels_name = rekognition_response.Labels.map((label) => label.Name);
+  console.log(labels_name);
+  const labels_conf = rekognition_response.Labels.map((label) => label.Confidence);
+  console.log(labels_conf);
+  const tf_model = await use.load();
+  console.log("model is loaded.");
+  const embeddings = await tf_model.embed(labels_name);
+  const embeddings_array = await embeddings.array();
+  let weighted_vector = new Array(embeddings_array.length);
+  console.log();
+  // weight the vector with Confidence
+  await Promise.all(embeddings_array.map(async (array, idx) => {
+    weighted_vector[idx] = array.map((val) => val * labels_conf[idx]);
+  }));
+  const added_vector = weighted_vector.reduce((acc, cur) => {
+    return acc.map((val, idx) => {
+      return val + cur[idx];
+    });
   });
-  return music_idx; // maybe Promise
+  let scores = [];
+  title_vectors.forEach((tvec, tidx) => {
+    scores.push([dotProduct(tvec, added_vector), tidx]); // [cos_sim, title_idx]
+  }); 
+  if (scores == []) {
+    console.log("error:score is empty");
+  } else {
+    console.log("before sorted score is:" + scores);
+  }
+  scores.sort((a, b) => b[0] - a[0]); // cos_simの降順にソート
+  console.log("sorted score is:" + scores);
+  return scores[0][1];
 };
 // Calculate the dot product of two vector arrays.
 const dotProduct = (xs, ys) => {
